@@ -3,23 +3,18 @@
   "id": "nocoin",
   "version": "${version}",
   "name": "Nocoin",
-  "description": "",
-  "authors": [],
+  "description": "A simple serverside currency mod",
+  "authors": ["MrNavaStar"],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/nocoin/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       "mrnavastar.nocoin.Nocoin"
     ]
-  },
-  "mixins": [
-    "nocoin.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.12.4",
+  },  "depends": {
+    "fabricloader": ">=0.12.6",
     "fabric": "*",
-    "minecraft": "1.17.1"
+    "minecraft": "1.18.x"
   }
 }

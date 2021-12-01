@@ -8,6 +8,7 @@ import mrnavastar.sqlib.api.databases.SQLiteDatabase;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.util.UserCache;
 import org.apache.logging.log4j.Level;
@@ -26,7 +27,7 @@ public class Nocoin implements ModInitializer {
     public void onInitialize() {
         log(Level.INFO, "Initializing...");
 
-        SQLiteDatabase database = new SQLiteDatabase("NoCoin", "/home/ethan/test");
+        SQLiteDatabase database = new SQLiteDatabase("NoCoin", FabricLoader.getInstance().getGameDir().toString());
         bank = database.createTable("bank");
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
