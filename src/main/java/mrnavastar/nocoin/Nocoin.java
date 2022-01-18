@@ -6,6 +6,7 @@ import mrnavastar.sqlib.api.DataContainer;
 import mrnavastar.sqlib.api.Table;
 import mrnavastar.sqlib.api.databases.SQLiteDatabase;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -31,11 +32,13 @@ public class Nocoin implements ModInitializer {
         bank = database.createTable("bank");
 
         ServerLifecycleEvents.SERVER_STARTED.register(server -> {
-            BalCommand.register(server.getCommandManager().getDispatcher());
-            PayCommand.register(server.getCommandManager().getDispatcher());
-
             playerManager = server.getPlayerManager();
             userCache = server.getUserCache();
+        });
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            BalCommand.register(dispatcher);
+            PayCommand.register(dispatcher);
         });
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
